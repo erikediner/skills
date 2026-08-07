@@ -1,9 +1,9 @@
 # NVE Skills
 
-<!-- Generert av KI med menneskelig supervensjon. Sist oppdatert: 2026-06-05 -->
+<!-- Generert av KI med menneskelig supervensjon. Sist oppdatert: 2026-08-07 -->
 
-Norske agent-skills for de to vanligste utvikler-scenarioene:
-**ny på en kodebase** og **ny oppgave i en kjent kodebase**.
+Norske agent-skills for de vanligste utvikler-scenarioene:
+**ny på en kodebase**, **ny oppgave i en kjent kodebase** og **Backstage-katalog**.
 
 ## Scenario 1 – Ny på kodebasen
 
@@ -11,6 +11,7 @@ Norske agent-skills for de to vanligste utvikler-scenarioene:
 |-------|-----------|
 | [`kodebase-oversikt`](./kodebase-oversikt/SKILL.md) | Du arver et prosjekt og trenger oversikt: språk, arkitektur, begreper, sårbarheter. Skriver/oppdaterer README og lagrer nøkkelfakta i `/memories/repo/`. |
 | [`sikkerhetsanalyse`](./sikkerhetsanalyse/SKILL.md) | Etter `kodebase-oversikt`: arkitektonisk sikkerhetsgjennomgang med STRIDE, OWASP Top 10, NSM Sikker Livssyklus og personvern (GDPR / Datatilsynet) + light dependency-sjekk. Skriver prioritert tiltaksliste til `docs/sikkerhet/SIKKERHETSANALYSE.md`. |
+| [`forbedre-catalog-info`](./forbedre-catalog-info/SKILL.md) | Validerer og oppdaterer `catalog-info.yaml` mot NVE-regler for Backstage. Brukes ved "sjekk catalog-info", "forbedre backstage-fil" eller lignende. |
 
 ## Scenario 2 – Ny oppgave i kjent kodebase
 
@@ -25,6 +26,7 @@ eller bare `<kort-navn>` hvis det ikke finnes JIRA-nummer.
 | 3 | [`orkestrer-oppgaver`](./orkestrer-oppgaver/SKILL.md) | `ORKESTRATOR.md` | Oppgavene er klare og du vil kjøre flere etter hverandre. Løkke: velger neste oppgave, delegerer til `implementer`, synker plan mot virkelighet. Resumerbar (Ralph-stil). |
 | 3a | [`implementer`](./implementer/SKILL.md) | (kanban + markør oppdatert) | Én oppgave om gangen: HITL-innsjekk, delegerer til `tdd`, selvverifiserer, oppdaterer kanban. Kan kalles alene eller av `orkestrer-oppgaver`. |
 | 3b | [`tdd`](./tdd/SKILL.md) | (kode + tester) | Kalles av `implementer` per oppgave. Rød-grønn-refaktor på ett vertikalt snitt. |
+| 4 | [`kode-gjennomgang`](./kode-gjennomgang/SKILL.md) | (reviewrapport) | To-akse review av diff (Standard + Spec) med parallelle subagenter. Brukes etter `implementer` eller ved PR-review. |
 
 ## Flyt
 
@@ -33,10 +35,12 @@ flowchart LR
     KO[kodebase-oversikt] --> SA[sikkerhetsanalyse]
     KO -.->|repo-memory| GK
     SA -.->|kritiske funn| SP
+    KO --> FCI[forbedre-catalog-info]
     GK[grill-kravspec] --> SP[splitt-oppgaver]
     SP --> OO[orkestrer-oppgaver]
     OO -->|per oppgave| IMP[implementer]
     IMP -->|rød-grønn| TDD[tdd]
+    IMP --> KGJ[kode-gjennomgang]
     OO -->|synk| GK
 ```
 
