@@ -1,0 +1,66 @@
+# NVE Skills
+
+<!-- Generert av KI med menneskelig supervensjon. Sist oppdatert: 2026-06-05 -->
+
+Norske agent-skills for de to vanligste utvikler-scenarioene:
+**ny på en kodebase** og **ny oppgave i en kjent kodebase**.
+
+## Scenario 1 – Ny på kodebasen
+
+| Skill | Når brukes |
+|-------|-----------|
+| [`kodebase-oversikt`](./kodebase-oversikt/SKILL.md) | Du arver et prosjekt og trenger oversikt: språk, arkitektur, begreper, sårbarheter. Skriver/oppdaterer README og lagrer nøkkelfakta i `/memories/repo/`. |
+| [`sikkerhetsanalyse`](./sikkerhetsanalyse/SKILL.md) | Etter `kodebase-oversikt`: arkitektonisk sikkerhetsgjennomgang med STRIDE, OWASP Top 10, NSM Sikker Livssyklus og personvern (GDPR / Datatilsynet) + light dependency-sjekk. Skriver prioritert tiltaksliste til `docs/sikkerhet/SIKKERHETSANALYSE.md`. |
+
+## Scenario 2 – Ny oppgave i kjent kodebase
+
+Hele workflowen lever per oppgave i `docs/oppgaver/<oppgave-id>/`, hvor
+`<oppgave-id>` er `<JIRA-NR>-<kort-navn>` (f.eks. `PROJ-123-elektrisk-fakturering`)
+eller bare `<kort-navn>` hvis det ikke finnes JIRA-nummer.
+
+| Steg | Skill | Lager | Når brukes |
+|------|-------|-------|-----------|
+| 1 | [`grill-kravspec`](./grill-kravspec/SKILL.md) | `KRAVSPEC.md` | PO har gitt en ny oppgave. Griller utvikler til felles forståelse, skriver kravspec med nøkkelbegreper og arkitekturavgjørelser. |
+| 2 | [`splitt-oppgaver`](./splitt-oppgaver/SKILL.md) | `OPPGAVER.md` | Kravspec er klar. Splitter i tracerkule-oppgaver (vertikale snitt) med kanban og avhengighetsdiagram. |
+| 3 | [`orkestrer-oppgaver`](./orkestrer-oppgaver/SKILL.md) | `ORKESTRATOR.md` | Oppgavene er klare og du vil kjøre flere etter hverandre. Løkke: velger neste oppgave, delegerer til `implementer`, synker plan mot virkelighet. Resumerbar (Ralph-stil). |
+| 3a | [`implementer`](./implementer/SKILL.md) | (kanban + markør oppdatert) | Én oppgave om gangen: HITL-innsjekk, delegerer til `tdd`, selvverifiserer, oppdaterer kanban. Kan kalles alene eller av `orkestrer-oppgaver`. |
+| 3b | [`tdd`](./tdd/SKILL.md) | (kode + tester) | Kalles av `implementer` per oppgave. Rød-grønn-refaktor på ett vertikalt snitt. |
+
+## Flyt
+
+```mermaid
+flowchart LR
+    KO[kodebase-oversikt] --> SA[sikkerhetsanalyse]
+    KO -.->|repo-memory| GK
+    SA -.->|kritiske funn| SP
+    GK[grill-kravspec] --> SP[splitt-oppgaver]
+    SP --> OO[orkestrer-oppgaver]
+    OO -->|per oppgave| IMP[implementer]
+    IMP -->|rød-grønn| TDD[tdd]
+    OO -->|synk| GK
+```
+
+## Filer per oppgave
+
+```
+docs/oppgaver/PROJ-123-elektrisk-fakturering/
+├── KRAVSPEC.md       ← grill-kravspec
+├── OPPGAVER.md       ← splitt-oppgaver (kanban + avhengigheter)
+└── ORKESTRATOR.md    ← orkestrer-oppgaver (state, logg, avvik, synk-historikk)
+```
+
+## Prinsipper
+
+- **Norsk gjennomgående** i description, instruksjoner og output
+- **Én skill, ett ansvar** – sikkerhet bor i `sikkerhetsanalyse`, ikke spredt utover
+- **Hver skill kort** (rundt 100–120 linjer) – store maler ligger som egne filer
+- **Disjoint description-triggere** – `IKKE bruk når...` peker til riktig naboskill
+- **Én eier av status** – kanban i `OPPGAVER.md` eier oppgavestatus; andre filer
+  speiler den ikke
+- **Riktig tyngde** – små oppgaver kan gå rett fra mini-spec til `tdd`; full
+  spec/splitt/orkestrer er for feature-størrelse
+- **Selvverifisering alltid** – orkestratoren leser diff og kjører tester uansett HITL/AFK
+- **Repo-memory er utgangspunkt, ikke fasit** – verifiser mot kode når den er gammel
+- **Filer per hovedoppgave** – alt for én oppgave bor i samme mappe
+- **KI-tag på alt som genereres** – `<!-- Generert av KI med menneskelig supervensjon. Sist oppdatert: [DATO] -->`
+- **Idempotent** – alle skills kan kjøres på nytt uten å duplisere eller miste arbeid
