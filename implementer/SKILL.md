@@ -93,14 +93,7 @@ iterer i samme oppgave.
 én linje (oppgave + hva som ble bygget + tester lagt til) i **AFK-batch** i
 `ORKESTRATOR.md`. Ikke avbryt utvikler.
 
-## Steg 6 – Kode-gjennomgang
-
-Kall `kode-gjennomgang`-skillen mot det faste punktet (f.eks. branchen oppgaven
-ble implementert på). Den kjører Standard- og Spec-aksen i parallell og
-rapporterer funnene. Blokkerende funn (krav som mangler, klare standardbrudd):
-noter i **Avvik fra plan** og behandle som HITL — stopp for utvikler.
-
-## Steg 7 – Registrer avvik
+## Steg 6 – Registrer avvik
 
 Hvis du oppdaget noe som ikke stemmer med `KRAVSPEC.md` eller `OPPGAVER.md`:
 skriv én linje i **Avvik fra plan** i `ORKESTRATOR.md`. Ikke oppdater
@@ -108,7 +101,7 @@ kravspec eller oppgaver selv – det gjør `orkestrer-oppgaver` i sin
 synk-sjekk. Et nytt avvik er alltid grunn til å stoppe hvis kaller er
 utvikler direkte.
 
-## Steg 8 – Rapporter og stopp
+## Steg 7 – Rapporter og stopp
 
 Oppdater `<!-- Sist oppdatert: [DATO] -->` i `ORKESTRATOR.md`.
 

@@ -26,7 +26,6 @@ eller bare `<kort-navn>` hvis det ikke finnes JIRA-nummer.
 | 3 | [`orkestrer-oppgaver`](./orkestrer-oppgaver/SKILL.md) | `ORKESTRATOR.md` | Oppgavene er klare og du vil kjøre flere etter hverandre. Løkke: velger neste oppgave, delegerer til `implementer`, synker plan mot virkelighet. Resumerbar (Ralph-stil). |
 | 3a | [`implementer`](./implementer/SKILL.md) | (kanban + markør oppdatert) | Én oppgave om gangen: HITL-innsjekk, delegerer til `tdd`, selvverifiserer, oppdaterer kanban. Kan kalles alene eller av `orkestrer-oppgaver`. |
 | 3b | [`tdd`](./tdd/SKILL.md) | (kode + tester) | Kalles av `implementer` per oppgave. Rød-grønn-refaktor på ett vertikalt snitt. |
-| 4 | [`kode-gjennomgang`](./kode-gjennomgang/SKILL.md) | (reviewrapport) | To-akse review av diff (Standard + Spec) med parallelle subagenter. Brukes etter `implementer` eller ved PR-review. |
 
 ## Flyt
 
@@ -40,7 +39,6 @@ flowchart LR
     SP --> OO[orkestrer-oppgaver]
     OO -->|per oppgave| IMP[implementer]
     IMP -->|rød-grønn| TDD[tdd]
-    IMP --> KGJ[kode-gjennomgang]
     OO -->|synk| GK
 ```
 
