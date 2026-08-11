@@ -1,4 +1,4 @@
-# NVE Skills
+# Eriks NVE Skills
 
 <!-- Generert av KI med menneskelig supervensjon. Sist oppdatert: 2026-08-07 -->
 
