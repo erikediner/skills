@@ -42,12 +42,16 @@ Valider mot [SJEKKLISTE.md](SJEKKLISTE.md):
 - norske beskrivelser
 - API `definition` satt
 
-Flagg avvik tydelig, og foresla konkret retting.
+Flagg avvik tydelig, og foreslå konkret retting.
 
 ## Steg 4 - Oppdater filen
 
 - Behold eksisterende `metadata.name` der det er mulig.
 - Fjern ikke gyldig informasjon uten grunn.
+- Når du er i ferd med å opprette en **ny** entitet (System, Component, API,
+  Resource): spør om det allerede finnes en entitet med samme navn eller ansvar
+  registrert fra et annet repo i Backstage. Hvis ja – referer til den i stedet
+  for å opprette en duplikat.
 - Legg til manglende system/component/api/resource.
 - Oppdater referanser i `dependsOn`, `consumesApis`, `providesApis`.
 - Hvis Swagger/OpenAPI mangler, bruk:
@@ -60,7 +64,7 @@ Vis diff i chat for skriving til disk ved stor endring.
 Sikre idempotens:
 - ikke dupliser entiteter med samme id
 - ikke bytt id-er uten eksplisitt grunn
-- oppdater eksisterende blokker fremfor aa lage nye
+- oppdater eksisterende blokker fremfor å lage nye
 
 ## Kort eksempel
 
