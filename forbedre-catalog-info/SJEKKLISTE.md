@@ -1,13 +1,13 @@
 # Sjekkliste for catalog-info
 
-Bruk denne sjekklisten foer du skriver eller oppdaterer `catalog-info.yaml`.
+Bruk denne sjekklisten før du skriver eller oppdaterer `catalog-info.yaml`.
 
-## 1) Entitetsnivaa og struktur
+## 1) Entitetsnivå og struktur
 
 - Bruk `apiVersion: backstage.io/v1alpha1`.
 - Del entiteter med `---`.
 - Ha minst ett `System` for helheten.
-- Modellér kjorbar programvare som `Component`.
+- Modellér kjørbar programvare som `Component`.
 - Modellér API-er som `API`.
 - Modellér databaser og filsystem som `Resource`.
 
@@ -22,10 +22,10 @@ Bruk denne sjekklisten foer du skriver eller oppdaterer `catalog-info.yaml`.
 
 ## 3) Metadata og tekst
 
-- `metadata.name` skal vaere unik, lesbar og kebab-case.
+- `metadata.name` skal være unik, lesbar og kebab-case.
 - Ingen mellomrom eller norske spesialtegn i id.
-- `metadata.description` skal vaere paa norsk.
-- Beskrivelser skal vaere korte og meningsbaerende.
+- `metadata.description` skal være på norsk.
+- Beskrivelser skal være korte og meningsbærende.
 
 ## 4) Referanser og avhengigheter
 
@@ -37,7 +37,7 @@ Bruk denne sjekklisten foer du skriver eller oppdaterer `catalog-info.yaml`.
 
 ## 5) API-definition
 
-- `spec.definition` er paakrevd for `kind: API`.
+- `spec.definition` er påkrevd for `kind: API`.
 - Foretrekk OpenAPI-lenke som returnerer JSON.
 - Hvis definisjon mangler: bruk
   `definition: 'server : https://example.com/api'`.
@@ -64,8 +64,8 @@ Modellér:
 
 - Behold etablerte id-er hvis mulig.
 - Gjør minimal diff.
-- Oppdater eksisterende blokk fremfor a legge ny, hvis samme id.
-- Fjern aapenbart feil data kun med begrunnelse.
+- Oppdater eksisterende blokk fremfor å legge ny, hvis samme id.
+- Fjern åpenbart feil data kun med begrunnelse.
 
 ## 9) Ny fil (hvis mangler)
 

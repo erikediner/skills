@@ -1,9 +1,20 @@
-# Eriks NVE Skills
+# Copilot-skills – personlige, deles fritt
 
 <!-- Generert av KI med menneskelig supervensjon. Sist oppdatert: 2026-08-07 -->
 
-Norske agent-skills for de vanligste utvikler-scenarioene:
-**ny på en kodebase**, **ny oppgave i en kjent kodebase** og **Backstage-katalog**.
+Dette er mine personlige Copilot-skills. Du er velkommen til å bruke dem som
+de er eller tilpasse dem til eget bruk. 
+
+## Kom i gang
+
+**Installer:** Kopier skillmappene du vil bruke til `~/.copilot/skills/`
+(personlig) eller `.github/skills/` i prosjektet ditt.
+
+**Bruk:** Åpne Copilot Chat i Agent-modus. Du kan aktivere en skill på to måter:
+- Skriv `/skillnavn` direkte, f.eks. `/grill-kravspec`, `/kodebase-oversikt`
+- Eller si en triggerfrase, f.eks. `«grill meg»`, `«gi meg oversikt»`, `«start orkestrator»`
+
+Triggerfrasene er definert i `description`-feltet øverst i hver SKILL.md.
 
 ## Scenario 1 – Ny på kodebasen
 

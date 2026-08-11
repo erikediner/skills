@@ -11,10 +11,10 @@ description: >
 
 # forbedre-catalog-info
 
-Maal: Gjore `catalog-info.yaml` mer korrekt, komplett og nyttig uten aa bryte
-etablerte id-er eller duplisere entiteter.
+Mål: Gjøre `catalog-info.yaml` mer korrekt, komplett og nyttig uten å bryte
+establerte id-er eller duplisere entiteter.
 
-Last [SJEKKLISTE.md](SJEKKLISTE.md) foer du starter.
+Last [SJEKKLISTE.md](SJEKKLISTE.md) før du starter.
 
 ## Steg 1 - Finn fil og modus
 
@@ -24,13 +24,13 @@ Last [SJEKKLISTE.md](SJEKKLISTE.md) foer du starter.
 
 ## Steg 2 - Kartlegg kilder
 
-Les dette i prioritert rekkefolge:
+Les dette i prioritert rekkefølge:
 - `README.md` og docs under `docs/`
 - Arkitektur- og driftsdokumentasjon i repoet
 - Manifest og konfig (`*.csproj`, `package.json`, `appsettings*.json`, env-filer)
 - Viktig kode for avhengigheter (API-klienter, database, filsystem, interne bibliotek)
 
-Hvis en sentral opplysning mangler, still korte oppklaringssporsmaal ett om
+Hvis en sentral opplysning mangler, still korte oppklaringsspørsmål ett om
 gangen med anbefalt svar.
 
 ## Steg 3 - Valider mot regler
@@ -55,7 +55,7 @@ Flagg avvik tydelig, og foresla konkret retting.
 
 Vis diff i chat for skriving til disk ved stor endring.
 
-## Steg 5 - Kjorbar pa nytt
+## Steg 5 - Kjørbar på nytt
 
 Sikre idempotens:
 - ikke dupliser entiteter med samme id
