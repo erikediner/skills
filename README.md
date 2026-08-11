@@ -3,7 +3,10 @@
 <!-- Generert av KI med menneskelig supervensjon. Sist oppdatert: 2026-08-07 -->
 
 Dette er mine personlige Copilot-skills. Du er velkommen til å bruke dem som
-de er eller tilpasse dem til eget bruk. 
+de er eller tilpasse dem til eget bruk.
+
+> Mye av inspirasjonen til strukturen og tilnærmingen her er hentet fra
+> [Matt Pocock sitt skills-repo](https://github.com/mattpocock/skills/tree/main/skills/engineering).
 
 ## Kom i gang
 
