@@ -70,6 +70,16 @@ Sikre idempotens:
 
 ```yaml
 apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: mitt-system
+  description: Systembeskrivelse på norsk.
+spec:
+  owner: nve
+  lifecycle: production
+
+---
+apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: min-backend
@@ -78,6 +88,7 @@ spec:
   type: service
   owner: nve
   lifecycle: production
+  system: mitt-system
   dependsOn:
     - resource:saksdata-db
 ```
