@@ -26,6 +26,7 @@ flowchart LR
 - **Type:** AFK
 - **Blokkert av:** ingen
 - **Dekker:** brukerhistorie 1, 2
+- **Startpunkt:** _(settes av implementer)_
 
 **Hva som skal bygges:** Kort beskrivelse av det vertikale snittet ende-til-ende.
 
@@ -40,6 +41,7 @@ flowchart LR
 - **Type:** HITL
 - **Blokkert av:** #1
 - **Dekker:** brukerhistorie 3
+- **Startpunkt:** _(settes av implementer)_
 
 **Hva som skal bygges:** ...
 
