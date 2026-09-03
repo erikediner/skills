@@ -27,6 +27,11 @@ Hvis kaller navnga en oppgave: bruk den. Ellers, fra kanban i `OPPGAVER.md`:
 
 Flytt oppgaven til **Pågår**. Les HITL/AFK-merket på oppgaven.
 
+Er dette første gang oppgaven flyttes til **Pågår** (ingen **Startpunkt**-linje
+under den ennå): kjør `git rev-parse HEAD` og skriv resultatet inn i
+oppgaveblokken som `- **Startpunkt:** <SHA>`. Gjenopptar du en oppgave som
+allerede har en **Startpunkt**-linje: bruk den SHA-en – ikke ta en ny.
+
 ## Steg 2 – Innsjekk før (kun HITL)
 
 AFK: hopp til steg 3. HITL: vis utvikler valgt oppgave, tynt vertikalt snitt,
@@ -35,9 +40,8 @@ trenger. Vent på eksplisitt go.
 
 ## Steg 3 – Deleger til tdd (alltid)
 
-Noter `git rev-parse HEAD` som startpunkt. Start `tdd` som subagent for
-snittet: rød test → grønn implementasjon → refaktorering, tynt men komplett
-gjennom alle lag.
+Start `tdd` som subagent for snittet: rød test → grønn implementasjon →
+refaktorering, tynt men komplett gjennom alle lag.
 
 ## Steg 4 – Selvverifiser (alltid)
 
@@ -46,10 +50,11 @@ Feiler verifiseringen: behandle som HITL, stopp for utvikler.
 
 ## Steg 5 – Kodegjennomgang (alltid)
 
-Kall `kodegjennomgang` med startpunktet fra steg 3 som «før»-punkt. Finnes
-ordet **Blokkerende** i noen av rapportene: behandle som HITL, stopp for
-utvikler før du går videre til steg 6. Finnes bare **Vurdering**: fortsett
-til steg 6, men ta med funnene i rapporten/demoen.
+Kall `kodegjennomgang` med **Startpunkt**-SHA-en fra oppgaveblokken i
+`OPPGAVER.md` som «før»-punkt. Finnes ordet **Blokkerende** i noen av
+rapportene: behandle som HITL, stopp for utvikler før du går videre til
+steg 6. Finnes bare **Vurdering**: fortsett til steg 6, men ta med funnene
+i rapporten/demoen.
 
 ## Steg 6 – Etter implementasjonen
 

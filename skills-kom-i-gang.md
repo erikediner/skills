@@ -117,7 +117,8 @@ Målet er felles forståelse før noe produseres.
 ## Regler
 
 - Ikke skriv kode, planer eller utkast før spørsmålene er besvart
-- Still ett spørsmål om gangen, med et anbefalt svar. Vent på svar før neste
+- Still spørsmålene i runder: hele frontlinjen av det som kan besvares nå,
+  nummerert med et anbefalt svar. Vent på svar på hele runden før neste
 - Fortsett til du ikke har flere vesentlige spørsmål. Det kan bli 5 eller 50
 - Utfordre antakelser. Sier jeg "åpenbart", spør hvorfor
 
@@ -191,6 +192,14 @@ description: Griller utvikler om én spesifikk ny oppgave eller feature og skriv
 
 `IKKE bruk`-linjene er den enkeltendringen som gir mest når samlingen vokser. De peker
 brukeren til riktig skill i stedet for at feil skill svarer.
+
+**En fjerde ting, når samlingen vokser videre: skal modellen i det hele tatt få velge
+skillen selv?** Sett `disable-model-invocation: true` i frontmatter for skills som er
+tunge, endrer mye, eller har en beskrivelse som stadig kolliderer med naboenes. Da
+starter du dem bare med `/skillnavn`, og beskrivelsen kan kortes ned til én menneskelig
+linje i skill-velgeren i stedet for en søkestreng modellen skal treffe på. Hjelpe-skills
+som bare kalles av andre skills – aldri av deg direkte – bør derimot forbli modellstyrt
+med en rik beskrivelse, ellers har ingenting noe å starte dem med.
 
 ---
 
