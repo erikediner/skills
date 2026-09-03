@@ -20,10 +20,11 @@ de er eller tilpasse dem til eget bruk.
   bare med skråstrek, f.eks. `/grill-kravspec`, `/kodebase-oversikt`. De har
   `disable-model-invocation: true`, så modellen velger dem ikke selv – du
   velger fra skill-velgeren.
-- **Modellstyrt** (`tdd`, `implementer`, `kodegjennomgang`, `feilsoking`):
-  kalles av andre skills eller trigges av frasen i `description`, f.eks.
-  «kjør tdd», «implementer neste oppgave», «feilsøk», «debug». Trenger ikke
-  skråstrek.
+- **Modellstyrt** (`tdd`, `implementer`, `kodegjennomgang`, `feilsoking`,
+  `grilling`): kalles av andre skills eller trigges av frasen i
+  `description`, f.eks. «kjør tdd», «implementer neste oppgave», «feilsøk»,
+  «debug». `grilling` kalles alltid av en annen skill, aldri direkte.
+  Trenger ikke skråstrek.
 
 ## Scenario 1 – Ny på kodebasen
 
@@ -68,6 +69,9 @@ flowchart LR
     IMP -->|rød-grønn| TDD[tdd]
     IMP -->|etter grønne tester| KG[kodegjennomgang]
     OO -->|synk| GK
+    GK --> GR[grilling]
+    SP --> GR
+    SA --> GR
 ```
 
 ## Filer per oppgave

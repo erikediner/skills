@@ -5,9 +5,9 @@ description: >
   selvverifiserer diff og tester, kjører `kodegjennomgang`, og oppdaterer
   kanban. Stopper etter én oppgave. Brukes når utvikler sier "implementer
   neste oppgave" eller når `orkestrer-oppgaver` delegerer en oppgave. IKKE
-  for å kjøre flere oppgaver etter hverandre eller starte orkestrering – det
-  krever `orkestrer-oppgaver`. For rød-grønn-syklusen, se `tdd`. For selve
-  gjennomgangen, se `kodegjennomgang`.
+  for å kjøre flere oppgaver etter hverandre eller starte orkestrering – be
+  utvikler skrive `/orkestrer-oppgaver` selv. For rød-grønn-syklusen, se
+  `tdd`. For selve gjennomgangen, se `kodegjennomgang`.
 ---
 
 # implementer
@@ -46,10 +46,10 @@ Feiler verifiseringen: behandle som HITL, stopp for utvikler.
 
 ## Steg 5 – Kodegjennomgang (alltid)
 
-Kall `kodegjennomgang` med startpunktet fra steg 3 som «før»-punkt. Har
-rapportene funn: vurder om de stopper flyten. Alvorlige funn (manglende
-krav, feil-implementerte krav): behandle som HITL, stopp for utvikler før du
-går videre til steg 6.
+Kall `kodegjennomgang` med startpunktet fra steg 3 som «før»-punkt. Finnes
+ordet **Blokkerende** i noen av rapportene: behandle som HITL, stopp for
+utvikler før du går videre til steg 6. Finnes bare **Vurdering**: fortsett
+til steg 6, men ta med funnene i rapporten/demoen.
 
 ## Steg 6 – Etter implementasjonen
 

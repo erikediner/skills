@@ -23,8 +23,11 @@ Kaller oppgir et fast punkt i git-historikken («før»-punktet: commit-SHA, tag
 eller branch). Kjør `git rev-parse <punkt>` for å bekrefte at det løses.
 Løser det ikke: stopp, be kaller oppgi et gyldig punkt.
 
-Kjør `git diff <punkt>...HEAD`. Er diffen tom: stopp, meld at det ikke er
-noe å gjennomgå.
+Ingen i kjeden committer før dette steget. Kjør `git add -N .` for å få
+usporede filer inn i diffen (uten å legge dem til i indeksen), og kjør
+deretter `git diff <punkt>` – uten trippelpunktum, slik at endringer i
+arbeidstreet er med. Er diffen tom: stopp, meld at det ikke er noe å
+gjennomgå.
 
 Finn `KRAVSPEC.md` og gjeldende oppgave i `OPPGAVER.md` under
 `docs/oppgaver/<oppgave-id>/`, hvis de finnes.
@@ -50,6 +53,9 @@ selv dokumenterer:
 - Død kode eller kode kommentert ut
 - Abstraksjon innført uten nåværende behov
 
+Merk hvert funn med **Vurdering** – en kodelukt er en heuristikk, ikke et
+brudd.
+
 **Subagent B – Krav**
 
 Spør: gjør diffen det `KRAVSPEC.md` og oppgaven i `OPPGAVER.md` ba om? Gi
@@ -58,6 +64,9 @@ den diffen, kravspec og oppgavebeskrivelsen. Rapporter tre kategorier:
 - Ting som er bygget uten å være bedt om
 - Krav som ser implementert ut, men er feil (feil betingelse, feil
   datakilde, feil grensetilfelle)
+
+Merk hvert funn med **Blokkerende** – alle tre kategoriene er brudd på
+avtalt omfang.
 
 ## Steg 3 – Presenter funnene
 
@@ -76,6 +85,7 @@ rapport står for seg.
 
 ## Steg 4 – Rapporter tilbake
 
-Gi kaller (utvikler eller `implementer`) begge rapportene samlet. Har noen
-av dem funn: la kaller vurdere om det stopper flyten videre – f.eks. før
-oppgaven flyttes til Ferdig i `implementer`.
+Gi kaller (utvikler eller `implementer`) begge rapportene samlet. Finnes
+ordet **Blokkerende** i noen av rapportene: dette stopper flyten videre –
+f.eks. før oppgaven flyttes til Ferdig i `implementer`. Funn merket
+**Vurdering** stopper ikke flyten, men skal vises til kaller.

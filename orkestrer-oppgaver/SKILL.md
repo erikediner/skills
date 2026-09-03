@@ -69,4 +69,6 @@ Gå tilbake til steg 2 og ta neste oppgave. Stopp løkken når:
 - Utvikler ber om pause (tøm batchen)
 
 Avslutt alltid med å sette inn dagens dato i `<!-- Sist oppdatert: [DATO] -->`
-øverst i `OPPGAVER.md` slik at neste kjøring vet hvor den er.
+øverst i `OPPGAVER.md` – til nytte for mennesker som leser filen. Kanban
+(kolonnene Klar/Pågår/Ferdig) er det som faktisk forteller neste kjøring
+hvor den er.

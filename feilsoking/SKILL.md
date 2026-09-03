@@ -5,7 +5,8 @@ description: >
   reproduserer akkurat denne feilen før noen hypotese formuleres, minimerer,
   instrumenterer, fikser, og skriver regresjonstest. Brukes når utvikler sier
   "feilsøk", "debug", eller når noe kaster en feil, feiler eller er
-  uventet tregt.
+  uventet tregt. IKKE bruk når en test feiler som forventet i rød fase av
+  `tdd`, eller når kaller er `tdd` eller `implementer`.
 ---
 
 # feilsoking

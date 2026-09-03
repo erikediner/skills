@@ -1,12 +1,12 @@
 ---
 name: grilling
 description: >
-  Intervjuer utvikler i runder for å avklare et tema før videre arbeid.
-  Stiller hele frontlinjen av spørsmål som kan besvares nå, nummerert med
-  anbefalt svar, og venter på svar før neste runde. Kalles av
-  `grill-kravspec`, `splitt-oppgaver` og `sikkerhetsanalyse` når de trenger
-  å avklare noe med utvikler. Brukes når utvikler sier "grill meg om X"
-  eller når en annen skill trenger et intervju.
+  Intervju-primitiv i runder: stiller hele frontlinjen av spørsmål som kan
+  besvares nå, nummerert med anbefalt svar, og venter på svar før neste
+  runde. Kalles av `grill-kravspec`, `splitt-oppgaver` og
+  `sikkerhetsanalyse` når de trenger å avklare noe med utvikler. IKKE bruk
+  direkte når utvikler vil ha en kravspesifikasjon – skriv `/grill-kravspec`
+  med skråstrek da.
 ---
 
 # grilling
