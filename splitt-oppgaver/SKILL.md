@@ -1,11 +1,7 @@
 ---
 name: splitt-oppgaver
-description: >
-  Planlegger: splitter en ferdig kravspesifikasjon i tracerkule-oppgaver (tynne
-  vertikale snitt) og organiserer dem som kanban med avhengigheter. Brukes når
-  utvikler sier "splitt oppgaver", "lag tasks fra kravspecen", "del opp arbeidet".
-  IKKE bruk for å utføre oppgavene – det gjør `orkestrer-oppgaver`. IKKE bruk
-  uten en eksisterende kravspec – kjør `grill-kravspec` først.
+description: Splitter en ferdig kravspesifikasjon i tracerkule-oppgaver og organiserer dem som kanban.
+disable-model-invocation: true
 ---
 
 # splitt-oppgaver
@@ -39,13 +35,9 @@ Vis utkastet som en nummerert liste. For hver oppgave:
 - **Blokkert av**: andre oppgaver (om noen)
 - **Dekker**: hvilke brukerhistorier fra kravspecen
 
-Spør:
-- Er granulariteten riktig (for grov / for fin)?
-- Stemmer avhengighetene?
-- Bør noen oppgaver slås sammen eller deles ytterligere?
-- Er HITL/AFK riktig markert?
-
-Iterer til utvikler godkjenner.
+Kall deretter `grilling`. Tema: er granulariteten riktig (for grov / for
+fin), stemmer avhengighetene, bør noen oppgaver slås sammen eller deles
+ytterligere, er HITL/AFK riktig markert. Iterer til utvikler godkjenner.
 
 ## Steg 4 – Skriv kanban-fil
 

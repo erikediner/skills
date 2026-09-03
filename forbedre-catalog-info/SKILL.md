@@ -1,12 +1,7 @@
 ---
 name: forbedre-catalog-info
-description: >
-  Finner eksisterende catalog-info.yaml/yml i et repo, validerer innholdet mot
-  NVE-regler for Backstage, leser dokumentasjon og relevant kode, og oppdaterer
-  filen med manglende eller viktig informasjon med minimal diff. Brukes når
-  utvikler vil "sjekke catalog-info", "forbedre backstage-fil", "oppdatere
-  catalog-info", "validere programvarekatalog", eller ber om kvalitetssjekk av
-  Backstage-spesifikasjon.
+description: Validerer og oppdaterer `catalog-info.yaml` mot NVE-regler for Backstage, med minimal diff.
+disable-model-invocation: true
 ---
 
 # forbedre-catalog-info

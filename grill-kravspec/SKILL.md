@@ -1,12 +1,7 @@
 ---
 name: grill-kravspec
-description: >
-  Griller utvikler om én spesifikk ny oppgave eller feature og skriver en ferdig
-  kravspesifikasjon med nøkkelbegreper og arkitekturavgjørelser innbakt. Brukes
-  når PO har gitt en konkret oppgave, eller utvikler sier "grill meg",
-  "lag kravspesifikasjon", "hjelp meg forstå oppgaven". IKKE bruk for å kartlegge
-  en hel kodebase – bruk `kodebase-oversikt` da. IKKE bruk for å splitte arbeidet
-  i tasks – det gjør `splitt-oppgaver`.
+description: Griller utvikler om én ny oppgave og skriver en ferdig kravspesifikasjon.
+disable-model-invocation: true
 ---
 
 # grill-kravspec
@@ -47,30 +42,40 @@ stoler på det:
 
 ## Steg 2 – Grill (viktigste steg)
 
-Grill utvikler grundig om alle aspekter av oppgaven. Still spørsmål **ett om gangen**
-med anbefalt svar, og vent på svar før neste. Jobb deg gjennom designtreet – ta én gren
-om gangen og løs avhengigheter mellom beslutninger underveis. Fortsett til du har nok
-til å skrive en fullstendig kravspesifikasjon.
+Kall `grilling`. Tema: alle aspekter av oppgaven som trengs for en full
+kravspesifikasjon – avgrensning, brukerhistorier, datamodeller,
+feilhåndtering, grensetilfeller, ikke-funksjonelle krav. Be den skjerpe vage
+eller overlastede termer til presise begrep, og teste med konkrete
+scenarioer for å tvinge frem grensetilfeller.
 
-Teknikker:
-- **Utforsk koden før du spør** – hvis svaret finnes i repoet, ikke spør
-- **Skjerp uklare ord** – når utvikler bruker vage eller overlastede termer, foreslå et presist begrep
-- **Test med konkrete scenarioer** – tving frem grensetilfeller før de blir antagelser
+Oppdater [KRAVSPEC-MAL.md](KRAVSPEC-MAL.md) fortløpende når en runde gir svar
+– ikke vent til slutten. Da blir steg 4 bare polering.
 
-Oppdater [KRAVSPEC-MAL.md](KRAVSPEC-MAL.md) fortløpende når et begrep eller en beslutning
-blir avklart – ikke vent til slutten. Da blir steg 3 bare polering.
+## Steg 3 – Avtal snitt-punkter
 
-## Steg 3 – Ferdigstill kravspesifikasjon
+Skisser hvilke **snitt-punkter** (offentlige grensesnitt du kan observere atferd
+gjennom, uten å nå inn i implementasjonen) oppgaven skal testes mot – ett per
+vertikalt snitt om flere er aktuelle.
+
+- Foretrekk et eksisterende snitt-punkt fremfor å innføre et nytt
+- Velg det høyest mulige snitt-punktet (nærmest slik bruker/klient faktisk
+  observerer systemet), ikke et internt hjelpelag
+- Skriv dem opp som en kort liste og få dem **eksplisitt godkjent av utvikler**
+  her – `tdd` henter dem senere fra kravspecen og spør ikke om dette på nytt
+
+Fyll listen inn i seksjonen **Snitt-punkter** i [KRAVSPEC-MAL.md](KRAVSPEC-MAL.md).
+
+## Steg 4 – Ferdigstill kravspesifikasjon
 
 Dokumentet er allerede fylt ut underveis. Nå skal du:
 
 - Lese gjennom for konsistens i begrepsbruk
 - Fylle ut eventuelle huller
 - Lagre som `docs/oppgaver/<oppgave-id>/KRAVSPEC.md`. Opprett mappen hvis den
-  ikke finnes. Hele oppgavens dokumentasjon (kravspec, oppgaver, orkestrator)
-  vil bo i denne mappen.
+  ikke finnes. Hele oppgavens dokumentasjon (kravspec, oppgaver) vil bo i
+  denne mappen.
 
-## Steg 4 – Bekreft
+## Steg 5 – Bekreft
 
 Presenter kravspesifikasjonen og spør:
 > Er dette en felles forståelse av oppgaven? Skal noe justeres før vi går videre?

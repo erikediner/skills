@@ -41,6 +41,19 @@ Tekniske avklaringer og arkitekturavgjørelser som ble tatt underveis:
 > Ikke inkluder filstier eller kodesnutter med mindre de koder en beslutning
 > mer presist enn prosa kan (f.eks. en tilstandsmaskin eller typestruktur).
 
+## Snitt-punkter
+
+Offentlige grensesnitt `tdd` skal teste atferd gjennom for denne oppgaven.
+Foretrekk eksisterende fremfor nytt, og høyest mulig nivå (nærmest der
+bruker/klient faktisk observerer systemet). Godkjent av utvikler.
+
+| Snitt-punkt | Nytt/eksisterende | Dekker |
+|-------------|--------------------|--------|
+|             |                    |        |
+
+> `tdd` henter snitt-punktene herfra i stedet for å avtale dem på nytt. Er
+> tabellen tom, stopper `tdd` og ber om at denne seksjonen fylles ut først.
+
 ## Testbeslutninger
 
 - Hva er en god test for denne featuren (test ekstern atferd, ikke implementasjonsdetaljer)
