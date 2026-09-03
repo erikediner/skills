@@ -1,11 +1,7 @@
 ---
 name: sikkerhetsanalyse
-description: >
-  Arkitektonisk sikkerhetsgjennomgang med STRIDE, OWASP Top 10, NSM Sikker
-  Livssyklus og GDPR/Datatilsynet. Leverer prioritert tiltaksliste og avdekker
-  åpenbare personvernbrudd. Brukes når utvikler sier "sikkerhetsanalyse",
-  "STRIDE", "OWASP", "personvernsjekk", "GDPR-gjennomgang", "finn sårbarheter",
-  eller rett etter `kodebase-oversikt`. IKKE for linje-for-linje review.
+description: Arkitektonisk sikkerhetsgjennomgang med STRIDE, OWASP Top 10, NSM og GDPR, med prioritert tiltaksliste.
+disable-model-invocation: true
 ---
 
 # sikkerhetsanalyse
@@ -27,9 +23,9 @@ kartlegg språk, rammeverk, deploy-mål, auth og dataflyt
 selv. Identifiser **angrepsoverflaten**: HTTP-endepunkter, queues, filopplastinger,
 eksterne integrasjoner, hemmeligheter, databaser.
 
-Spør utvikler om eksponering (internett/internt), mest sensitive data, om
-**personopplysninger** behandles (navn, fnr, helse, lokasjon, IP), og om det
-finnes eksisterende trusselmodell eller DPIA.
+Kall `grilling`. Tema: eksponering (internett/internt), mest sensitive data,
+om **personopplysninger** behandles (navn, fnr, helse, lokasjon, IP), og om
+det finnes eksisterende trusselmodell eller DPIA.
 
 ## Steg 2 – STRIDE pr. komponent
 

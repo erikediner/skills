@@ -17,12 +17,13 @@ Du tester atferd gjennom offentlige grensesnitt, ikke implementasjonsdetaljer.
 Et **snitt-punkt** er det offentlige grensesnittet du tester atferd mot: der du
 kan observere hva systemet gjør uten å nå inn i det.
 
-**Ingen test skrives mot et ubekreftet snitt-punkt.** Før én test lages: skriv ned
-hvilke snitt-punkter som er aktuelle og bekreft dem med utvikler eller orkestrator.
-Du kan ikke teste alt — å avtale snitt-punktene på forhånd er det som sikrer at
-testinnsatsen lander på kritiske stier og kompleks logikk, ikke tilfeldige kanter.
+**Snitt-punktene er allerede avtalt.** De står i seksjonen «Snitt-punkter» i
+`KRAVSPEC.md`, avklart og godkjent av utvikler under `grill-kravspec`. Hent dem
+derfra – ikke avtal eller spør om snitt-punkter her.
 
-Spør: «Hva er det offentlige grensesnittet, og hvilke snitt-punkter skal vi teste?»
+Mangler `KRAVSPEC.md`, eller er seksjonen «Snitt-punkter» fraværende eller tom:
+stopp og be kaller (utvikler, `implementer` eller `orkestrer-oppgaver`) kjøre
+`grill-kravspec` først. Ikke gjett deg frem til snitt-punkter selv.
 
 ## Filosofi
 
@@ -65,11 +66,13 @@ RIKTIG (vertikalt – tracerkule):
 Før noe kode skrives:
 
 - Bekreft hvilke grensesnittendringer som trengs
-- **Avtal snitt-punktene** — skriv dem ned og få godkjenning
+- **Hent snitt-punktene** fra seksjonen «Snitt-punkter» i `KRAVSPEC.md` – ikke
+  avtal dem på nytt
 - Prioriter atferd som skal testes (ikke implementasjonssteg)
 - Bruk prosjektets begrepsbruk fra kravspec og README
 
-Spør: «Hva er snitt-punktene, og hvilke atferder er viktigst å teste?»
+Mangler `KRAVSPEC.md` eller seksjonen «Snitt-punkter»: stopp og be kaller kjøre
+`grill-kravspec` først.
 
 ### 2. Tracerkule
 
@@ -117,7 +120,7 @@ Når alle testene er grønne:
 
 ## Rapportering tilbake
 
-Når oppgaven er ferdig, rapporter kort til den som kalte deg (utvikler eller orkestrator):
+Når oppgaven er ferdig, rapporter kort til den som kalte deg (utvikler eller `orkestrer-oppgaver`):
 
 - Hvilke tester ble lagt til (filnavn + testnavn)
 - Hvilken atferd dekkes nå

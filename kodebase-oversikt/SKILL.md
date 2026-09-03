@@ -1,12 +1,7 @@
 ---
 name: kodebase-oversikt
-description: >
-  Onboarder utvikler til en ukjent kodebase som helhet: språk, arkitektur,
-  begreper, patterns og uvanlig oppsett. Genererer eller oppdaterer
-  README. Brukes når utvikler arver et prosjekt, skal sette seg inn i en hel
-  kodebase, eller sier "gi meg oversikt", "hva gjør dette prosjektet", "lag readme".
-  IKKE bruk for å forstå en spesifikk ny oppgave – bruk `grill-kravspec` da.
-  IKKE bruk for sikkerhets-/sårbarhetsgjennomgang – bruk `sikkerhetsanalyse` da.
+description: Onboarder utvikler til en ukjent kodebase og genererer eller oppdaterer README.
+disable-model-invocation: true
 ---
 
 # kodebase-oversikt

@@ -13,11 +13,17 @@ de er eller tilpasse dem til eget bruk.
 **Installer:** Kopier skillmappene du vil bruke til `~/.copilot/skills/`
 (personlig) eller `.github/skills/` i prosjektet ditt.
 
-**Bruk:** Åpne Copilot Chat i Agent-modus. Du kan aktivere en skill på to måter:
-- Skriv `/skillnavn` direkte, f.eks. `/grill-kravspec`, `/kodebase-oversikt`
-- Eller si en triggerfrase, f.eks. `«grill meg»`, `«gi meg oversikt»`, `«start orkestrator»`
+**Bruk:** Åpne Copilot Chat i Agent-modus. Skillene deler seg i to grupper:
 
-Triggerfrasene er definert i `description`-feltet øverst i hver SKILL.md.
+- **Brukerstyrt** (`grill-kravspec`, `splitt-oppgaver`, `orkestrer-oppgaver`,
+  `kodebase-oversikt`, `sikkerhetsanalyse`, `forbedre-catalog-info`): startes
+  bare med skråstrek, f.eks. `/grill-kravspec`, `/kodebase-oversikt`. De har
+  `disable-model-invocation: true`, så modellen velger dem ikke selv – du
+  velger fra skill-velgeren.
+- **Modellstyrt** (`tdd`, `implementer`, `kodegjennomgang`, `feilsoking`):
+  kalles av andre skills eller trigges av frasen i `description`, f.eks.
+  «kjør tdd», «implementer neste oppgave», «feilsøk», «debug». Trenger ikke
+  skråstrek.
 
 ## Scenario 1 – Ny på kodebasen
 
@@ -37,9 +43,16 @@ eller bare `<kort-navn>` hvis det ikke finnes JIRA-nummer.
 |------|-------|-------|-----------|
 | 1 | [`grill-kravspec`](./grill-kravspec/SKILL.md) | `KRAVSPEC.md` | PO har gitt en ny oppgave. Griller utvikler til felles forståelse, skriver kravspec med nøkkelbegreper og arkitekturavgjørelser. |
 | 2 | [`splitt-oppgaver`](./splitt-oppgaver/SKILL.md) | `OPPGAVER.md` | Kravspec er klar. Splitter i tracerkule-oppgaver (vertikale snitt) med kanban og avhengighetsdiagram. |
-| 3 | [`orkestrer-oppgaver`](./orkestrer-oppgaver/SKILL.md) | `ORKESTRATOR.md` | Oppgavene er klare og du vil kjøre flere etter hverandre. Løkke: velger neste oppgave, delegerer til `implementer`, synker plan mot virkelighet. Resumerbar (Ralph-stil). |
-| 3a | [`implementer`](./implementer/SKILL.md) | (kanban + markør oppdatert) | Én oppgave om gangen: HITL-innsjekk, delegerer til `tdd`, selvverifiserer, oppdaterer kanban. Kan kalles alene eller av `orkestrer-oppgaver`. |
+| 3 | [`orkestrer-oppgaver`](./orkestrer-oppgaver/SKILL.md) | (oppdaterer `OPPGAVER.md`) | Oppgavene er klare og du vil kjøre flere etter hverandre. Løkke: velger neste oppgave, delegerer til `implementer`, synker plan mot virkelighet. Resumerbar (Ralph-stil). |
+| 3a | [`implementer`](./implementer/SKILL.md) | (kanban oppdatert) | Én oppgave om gangen: HITL-innsjekk, delegerer til `tdd`, selvverifiserer, kjører `kodegjennomgang`, oppdaterer kanban. Kan kalles alene eller av `orkestrer-oppgaver`. |
 | 3b | [`tdd`](./tdd/SKILL.md) | (kode + tester) | Kalles av `implementer` per oppgave. Rød-grønn-refaktor på ett vertikalt snitt. |
+| 3c | [`kodegjennomgang`](./kodegjennomgang/SKILL.md) | (rapport til kaller) | Kalles av `implementer` etter grønne tester. Gjennomgår diffen mot standarder og krav i to parallelle subagenter, i egen kontekst. |
+
+## Scenario 3 – Noe er ødelagt
+
+| Skill | Når brukes |
+|-------|-----------|
+| [`feilsoking`](./feilsoking/SKILL.md) | Noe kaster en feil, feiler eller er uventet tregt. Bygger en rød reproduksjonssløyfe før noen hypotese formuleres, minimerer, instrumenterer, fikser, og skriver regresjonstest. |
 
 ## Flyt
 
@@ -53,6 +66,7 @@ flowchart LR
     SP --> OO[orkestrer-oppgaver]
     OO -->|per oppgave| IMP[implementer]
     IMP -->|rød-grønn| TDD[tdd]
+    IMP -->|etter grønne tester| KG[kodegjennomgang]
     OO -->|synk| GK
 ```
 
@@ -60,9 +74,9 @@ flowchart LR
 
 ```
 docs/oppgaver/PROJ-123-elektrisk-fakturering/
-├── KRAVSPEC.md       ← grill-kravspec
-├── OPPGAVER.md       ← splitt-oppgaver (kanban + avhengigheter)
-└── ORKESTRATOR.md    ← orkestrer-oppgaver (state, logg, avvik, synk-historikk)
+├── KRAVSPEC.md   ← grill-kravspec
+└── OPPGAVER.md   ← splitt-oppgaver (kanban, avhengigheter), oppdatert av
+                    orkestrer-oppgaver/implementer (avvik, AFK-batch, synk-historikk)
 ```
 
 ## Prinsipper
@@ -75,7 +89,7 @@ docs/oppgaver/PROJ-123-elektrisk-fakturering/
   speiler den ikke
 - **Riktig tyngde** – små oppgaver kan gå rett fra mini-spec til `tdd`; full
   spec/splitt/orkestrer er for feature-størrelse
-- **Selvverifisering alltid** – orkestratoren leser diff og kjører tester uansett HITL/AFK
+- **Selvverifisering alltid** – `implementer` leser diff og kjører tester uansett HITL/AFK
 - **Repo-memory er utgangspunkt, ikke fasit** – verifiser mot kode når den er gammel
 - **Filer per hovedoppgave** – alt for én oppgave bor i samme mappe
 - **KI-tag på alt som genereres** – `<!-- Generert av KI med menneskelig supervensjon. Sist oppdatert: [DATO] -->`
