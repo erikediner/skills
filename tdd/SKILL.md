@@ -1,128 +1,132 @@
 ---
 name: tdd
 description: >
-  Implementerer én oppgave (ett vertikalt snitt) med rød-grønn-refaktor og
-  tracerkule-tilnærming. Tester atferd gjennom offentlig grensesnitt, ikke
-  implementasjonsdetaljer. Brukes når utvikler sier "kjør tdd", "test-først",
-  "implementer med tdd", eller når `orkestrer-oppgaver` delegerer en oppgave.
+  Implements one task (one vertical slice) with red-green-refactor and a
+  tracer bullet approach. Tests behavior through the public interface, not
+  implementation details. Use when the developer says "run tdd", "test
+  first", "implement with tdd", when `implement-task` delegates a task, or
+  when `grill-spec` sends a mini-spec directly.
 ---
 
 # tdd
 
-Du implementerer én oppgave – ett vertikalt snitt – ved hjelp av rød-grønn-refaktor.
-Du tester atferd gjennom offentlige grensesnitt, ikke implementasjonsdetaljer.
+You implement one task, one vertical slice, using red-green-refactor.
+You test behavior through public interfaces, not implementation details.
 
-## Snitt-punkter – hvor tester hører hjemme
+## Test surfaces: where tests belong
 
-Et **snitt-punkt** er det offentlige grensesnittet du tester atferd mot: der du
-kan observere hva systemet gjør uten å nå inn i det.
+A **test surface** is the public interface you test behavior against: where
+you can observe what the system does without reaching into it.
 
-**Snitt-punktene er allerede avtalt.** De står i seksjonen «Snitt-punkter» i
-`KRAVSPEC.md`, avklart og godkjent av utvikler under `grill-kravspec`. Hent dem
-derfra – ikke avtal eller spør om snitt-punkter her.
+**The test surfaces are already agreed.** They are in the "Test surfaces"
+section of `SPEC.md`, or in the mini-spec from `grill-spec` for small tasks,
+clarified and approved by the developer. Read them from there. Do not agree
+on or ask about test surfaces here.
 
-Mangler `KRAVSPEC.md`, eller er seksjonen «Snitt-punkter» fraværende eller tom:
-stopp og be kaller (utvikler, `implementer` eller `orkestrer-oppgaver`) kjøre
-`grill-kravspec` først. Ikke gjett deg frem til snitt-punkter selv.
+If there is neither a "Test surfaces" section in `SPEC.md` nor a test surface
+in the mini-spec: stop and ask the caller (the developer or `implement-task`)
+to run `grill-spec` first. Do not guess test surfaces yourself.
 
-## Filosofi
+## Philosophy
 
-**God test:** beskriver _hva_ systemet gjør gjennom et snitt-punkt. Overlever
-refaktorering fordi den ikke bryr seg om intern struktur. Leses som en spesifikasjon.
-Forventede verdier kommer fra en **uavhengig kilde** — et kjent-godt literal,
-et utregnet eksempel, spec-en — aldri reberegnet på samme måte som koden.
+**Good test:** describes _what_ the system does through a test surface.
+Survives refactoring because it does not care about internal structure. Reads
+like a specification. Expected values come from an **independent source**: a
+known-good literal, a worked example, the spec. Never recomputed the same way
+as the code.
 
-**Dårlig test:** koblet til implementasjon. Mocker interne samarbeidspartnere, tester
-private metoder, eller verifiserer ved å gå utenom snitt-punktet. Bryter når du refaktorerer
-selv om atferden er uendret.
+**Bad test:** coupled to the implementation. Mocks internal collaborators,
+tests private methods, or verifies by going around the test surface. Breaks
+when you refactor even though the behavior is unchanged.
 
-## Antimønster: tautologisk test
+## Anti-pattern: tautological test
 
-En tautologisk test beregner forventet verdi på **samme måte** som koden gjør det:
-`expect(sum(a, b)).toBe(a + b)`. Den passerer alltid, gir null forsikring, og kan
-aldri avdekke en feil. Forventede verdier **må** komme fra en uavhengig kilde —
-et kjent-godt literal, et håndregnet eksempel, en verdi fra spec-en.
+A tautological test computes the expected value the **same way** the code
+does: `expect(sum(a, b)).toBe(a + b)`. It always passes, gives zero
+assurance, and can never reveal a bug. Expected values **must** come from an
+independent source: a known-good literal, a hand-computed example, a value
+from the spec.
 
-## Antimønster: horisontal snitting
+## Anti-pattern: horizontal slicing
 
-**Ikke skriv alle testene først, og så all implementasjonen.** Det produserer dårlige tester
-som tester forestilt atferd og er ufølsomme for ekte endringer.
+**Do not write all the tests first and then all the implementation.** That
+produces bad tests that test imagined behavior and do not react to real
+changes.
 
 ```
-FEIL (horisontalt):
-  RØD:   test1, test2, test3, test4
-  GRØNN: impl1, impl2, impl3, impl4
+WRONG (horizontal):
+  RED:   test1, test2, test3, test4
+  GREEN: impl1, impl2, impl3, impl4
 
-RIKTIG (vertikalt – tracerkule):
-  RØD → GRØNN: test1 → impl1
-  RØD → GRØNN: test2 → impl2
+RIGHT (vertical, tracer bullet):
+  RED -> GREEN: test1 -> impl1
+  RED -> GREEN: test2 -> impl2
   ...
 ```
 
-## Arbeidsflyt
+## Workflow
 
 ### 1. Plan
 
-Før noe kode skrives:
+Before any code is written:
 
-- Bekreft hvilke grensesnittendringer som trengs
-- **Hent snitt-punktene** fra seksjonen «Snitt-punkter» i `KRAVSPEC.md` – ikke
-  avtal dem på nytt
-- Prioriter atferd som skal testes (ikke implementasjonssteg)
-- Bruk prosjektets begrepsbruk fra kravspec og README
+- Confirm which interface changes are needed
+- **Read the test surfaces** from the "Test surfaces" section in `SPEC.md` or
+  from the mini-spec. Do not agree on them again
+- Prioritize behaviors to test (not implementation steps)
+- Use the project's terms from the spec, `AGENTS.md` and README
 
-Mangler `KRAVSPEC.md` eller seksjonen «Snitt-punkter»: stopp og be kaller kjøre
-`grill-kravspec` først.
+If the test surfaces are missing: stop and ask the caller to run `grill-spec` first.
 
-### 2. Tracerkule
+### 2. Tracer bullet
 
-Skriv ÉN test som bekrefter ÉN ting:
-
-```
-RØD:   Skriv test for første atferd → testen feiler
-GRØNN: Minimal kode for å bestå → testen passerer
-```
-
-Dette beviser at veien gjennom alle lag fungerer ende-til-ende.
-
-### 3. Inkrementell løkke
-
-For hver gjenstående atferd:
+Write ONE test that confirms ONE thing:
 
 ```
-RØD:   Skriv neste test → feiler
-GRØNN: Minimal kode for å bestå → passerer
+RED:   Write a test for the first behavior -> the test fails
+GREEN: Minimal code to pass -> the test passes
 ```
 
-Regler:
-- Én test om gangen
-- Bare nok kode til å bestå nåværende test
-- Ikke foregrip fremtidige tester
-- Hold tester på observerbar atferd
+This proves the path through every layer works end to end.
 
-### 4. Refaktor
+### 3. Incremental loop
 
-Når alle testene er grønne:
+For each remaining behavior:
 
-- Fjern duplikasjon
-- Skjul kompleksitet bak enkle grensesnitt
-- Kjør testene etter hvert refaktoreringssteg
+```
+RED:   Write the next test -> fails
+GREEN: Minimal code to pass -> passes
+```
 
-**Aldri refaktorer mens RØD.** Få det grønt først.
+Rules:
+- One test at a time
+- Only enough code to pass the current test
+- Do not anticipate future tests
+- Keep tests on observable behavior
 
-## Sjekkliste per syklus
+### 4. Refactor
 
-- [ ] Testen beskriver atferd, ikke implementasjon
-- [ ] Testen bruker bare offentlig grensesnitt
-- [ ] Testen ville overlevd en intern refaktorering
-- [ ] Koden er minimal for denne testen
-- [ ] Ingen spekulativ funksjonalitet lagt til
+When all tests are green:
 
-## Rapportering tilbake
+- Remove duplication
+- Hide complexity behind simple interfaces
+- Run the tests after each refactoring step
 
-Når oppgaven er ferdig, rapporter kort til den som kalte deg (utvikler eller `orkestrer-oppgaver`):
+**Never refactor while RED.** Get to green first.
 
-- Hvilke tester ble lagt til (filnavn + testnavn)
-- Hvilken atferd dekkes nå
-- Eventuelle avvik fra planen
-- Forslag til oppfølging hvis du oppdaget teknisk gjeld
+## Checklist per cycle
+
+- [ ] The test describes behavior, not implementation
+- [ ] The test uses only the public interface
+- [ ] The test would survive an internal refactoring
+- [ ] The code is minimal for this test
+- [ ] No speculative functionality added
+
+## Reporting back
+
+When the task is done, report briefly to whoever called you (the developer, `implement-task` or `grill-spec`):
+
+- Which tests were added (file name and test name)
+- Which behavior is now covered
+- Any deviations from the plan
+- Suggested follow-up if you found technical debt

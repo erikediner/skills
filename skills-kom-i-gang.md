@@ -154,10 +154,10 @@ spørsmålene avdekker noe du ikke hadde tenkt ferdig på.
 Det er hele poenget. Du får ikke nødvendigvis bedre svar av en flinkere modell. Du får bedre svar av å
 ha tenkt ferdig først.
 
-> **Vil du ikke skrive selv?** Det ligger en mer utbygd variant som `grill-kravspec` i
+> **Vil du ikke skrive selv?** Det ligger en mer utbygd variant som `grill-spec` i
 > [erikediner/skills](https://github.com/erikediner/skills). Kopier mappa til
-> `~/.copilot/skills/` og kjør `/grill-kravspec`. Den utforsker kodebasen først og
-> skriver en ferdig kravspec til slutt.
+> `~/.copilot/skills/` og kjør `/grill-spec`. Den utforsker kodebasen først og
+> skriver en ferdig spesifikasjon til slutt.
 
 ---
 
@@ -186,8 +186,8 @@ hverandres oppgaver. Løsningen er å si rett ut hva skillen *ikke* er til:
 description: Griller utvikler om én spesifikk ny oppgave eller feature og skriver en
   ferdig kravspesifikasjon. Brukes når PO har gitt en konkret oppgave, eller utvikler
   sier "grill meg", "lag kravspesifikasjon". IKKE bruk for å kartlegge en hel kodebase
-  – bruk `kodebase-oversikt` da. IKKE bruk for å splitte arbeidet i tasks – det gjør
-  `splitt-oppgaver`.
+  – bruk `codebase-overview` da. IKKE bruk for å splitte arbeidet i tasks – det gjør
+  `split-tasks`.
 ```
 
 `IKKE bruk`-linjene er den enkeltendringen som gir mest når samlingen vokser. De peker
@@ -274,8 +274,8 @@ Poenget er ikke akkurat disse fire. Poenget er at hver skill gjør én ting, og 
 resultatet fra den ene er inndata til den neste.
 
 > **Et ferdig oppsett å se på:** [erikediner/skills](https://github.com/erikediner/skills)
-> har hele kjeden implementert som `grill-kravspec`, `splitt-oppgaver`,
-> `orkestrer-oppgaver`, `implementer` og `tdd`, pluss noen for å komme inn i en ukjent
+> har hele kjeden implementert som `grill-spec`, `split-tasks`,
+> `orchestrate-tasks`, `implement-task` og `tdd`, pluss noen for å komme inn i en ukjent
 > kodebase.
 
 ---
@@ -357,8 +357,8 @@ agenter 48:15.
 
 **Skills å kopiere fra:**
 
-- [erikediner/skills](https://github.com/erikediner/skills) — våre, på norsk, med et
-  komplett oppsett fra kravspec til tester
+- [erikediner/skills](https://github.com/erikediner/skills) — våre, på engelsk, med et
+  komplett oppsett fra spesifikasjon til tester
 - [mattpocock/skills](https://github.com/mattpocock/skills/tree/main/skills/engineering)
 - [awesome-copilot](https://awesome-copilot.github.com/skills/)
 - [anthropics/skills](https://github.com/anthropics/skills)

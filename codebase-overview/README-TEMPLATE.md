@@ -1,6 +1,7 @@
-# README-mal
+# README template
 
-> Fyll ut det du har dekning for. Merk manglende info med `<!-- TODO -->`.
+> Fill in what you have coverage for. Mark missing info with `<!-- TODO -->`.
+> The README is written in Norwegian, so the template below is in Norwegian.
 
 ---
 
@@ -8,7 +9,7 @@
 
 > Én setning som forklarer hva prosjektet gjør og for hvem.
 
-<!-- Generert av KI med menneskelig supervensjon. Sist oppdatert: [DATO] -->
+<!-- Generert av KI med menneskelig supervisjon. Sist oppdatert: [DATO] -->
 
 ## Oversikt
 
@@ -26,7 +27,7 @@
 
 ## Arkitektur
 
-<!-- Beskriv arkitekturmønster og overordnet struktur. Legg gjerne til en enkel tekstbasert diagram. -->
+<!-- Beskriv arkitekturmønster og overordnet struktur. Legg gjerne til et enkelt tekstbasert diagram. -->
 
 ```
 src/
